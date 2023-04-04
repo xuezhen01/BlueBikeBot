@@ -7,8 +7,6 @@
 
 Telegram Bot for users to find out real-time data of bike availabilities of stations nearest to the user, and other information related to Bluebikes
 
----
-
 ## 2. The Big Idea: 
 
 What is the main idea of your project? What topics will you explore and what will you accomplish? Describe your minimum viable product (MVP) and your stretch goal.
