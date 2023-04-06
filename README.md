@@ -5,22 +5,46 @@
 
 ## 1. Overview
 
-Telegram Bot for users to find out real-time data of bike availabilities of stations nearest to the user, and other information related to Bluebikes
+This project focuses on building a Telegram Bot for users to find out real-time data of Blue Bikes. 
 
 ## 2. The Big Idea: 
 
 What is the main idea of your project? What topics will you explore and what will you accomplish? Describe your minimum viable product (MVP) and your stretch goal.
 
+The Main idea of this project would be to enable users to find out bike availabilities via the telegram bot - User raises a question about bluebikes, e.g. whether there are bikes available for rent at a specific station. 
+
 ## 3. Learning Objectives
 
 Since this is a team project, you may want to articulate both shared and individual learning goals.
 
+For this project, we both aim to be able to integrate more features with functionalities into the project, and to ensure good communication and teamwork is obtained. 
+
+Individual goals:
+
+xz - I want to be able to build a telegram bot successfully, as i have never done so before and feel that it would give me good exposure. I also want to be able to better organise code structure to ensure neatness and good coding habits. 
+
+matteo - 
+
 ## 4. Implementation Plan: 
 This part may be somewhat ambiguous initially. You might have identified a library or a framework that you believe would be helpful for your project at this early stage. If you're uncertain about executing your project plan, provide a rough plan describing how you'll investigate this information further.
+
+First, we have sourced for an API provided by bluebikes, this API is able to share with us the station names and IDs, number of available bikes, number of bikes to be returned and many more. 
+
+Next, we want to be read up on the implementation of a telegram bot, and how a bot can read and respond to queries from the user to provide accurate replies. Following this, we will find out how we can integrate using a map into telegram bot. 
+
+To add more fun features, we also would like to explore using telegram features such as sending current location to the bot, and then intepreting the location details to return the nearest bike station, rather than having the user manually type the zipcode or location address. 
+
 
 ## 5. Project Schedule: 
 
 You have 6 weeks (roughly) to finish the project. Draft a general timeline for your project. Depending on your project, you might be able to provide a detailed schedule or only an overview. Preparation of a longer project is also accompanied by present uncertainty, and this schedule will likely require revisions as the project progresses.
+
+- Week 1: read up on telegram bot, how to access the bluebike api, how to structure the API calling (as more than 1 api will need to be called), define what functionalities the telegram bot should be able to carry out. 
+- Week 2: create flask file and other files (html, functions), build the basic requirements of a telegram bot. Create necessary functions to call and extract data given from bluebike's api.
+- Week 3: utilise mapbox to enable user's input to get the nearest bluebike location to the user's input. code out the responses from a bot, cover corner cases as well (when location does not exist, or when location is out of bounds (where bluebike does not provide services & other error messages)
+- Week 4: continue week 3's functionalities 
+- Week 5: improve code functionality and tidy up any unnecessary features, add more special featuers from telegram, such as using location services to send user's current location. Or add some cool responses to random questions submitted by user. 
+- Week 6: testing for the website, to ensure that the functionalities are working. 
 
 ## 6. Collaboration Plan
 
@@ -30,6 +54,9 @@ How will you collaborate with your teammates on this project? Will you divide ta
 
 What do you believe is the most significant threat to this project's success?
 
+Telegram bot not being able to return the expected asnwers, such as the nearest bike not being able to be found. API call failing, because we will need to access different api to link the data together, example API 1 only provides station ID, but to get the exact station name, we will need to call API 2 and match the station ID to obtain the station name. 
+
 ## Additional Course Content
 
 What topics do you believe will be beneficial to your project?
+
