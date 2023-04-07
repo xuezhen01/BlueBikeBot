@@ -9,9 +9,7 @@ This project focuses on building a Telegram Bot for users to find out real-time 
 
 ## 2. The Big Idea: 
 
-What is the main idea of your project? What topics will you explore and what will you accomplish? Describe your minimum viable product (MVP) and your stretch goal.
-
-The Main idea of this project would be to enable users to find out bike availabilities via the telegram bot - User raises a question about bluebikes, e.g. whether there are bikes available for rent at a specific station. 
+The Main idea of this project would be to enable users to find out bike availabilities via the telegram bot - User raises a question about bluebikes, e.g. whether there are bikes available for rent at a specific station.
 
 ## 3. Learning Objectives
 
@@ -24,12 +22,12 @@ xz - I want to be able to build a telegram bot successfully, as i have never don
 matteo - I would want to look into learning how to use the Telegram API and utilizing the user's location in order to find the nearest BlueBikes. In addition, I want to familiarize myself more with flask and designing a web app.
 
 ## 4. Implementation Plan: 
+
 First, we have sourced for an API provided by bluebikes, this API is able to share with us the station names and IDs, number of available bikes, number of bikes to be returned and many more. 
 
 Next, we want to be read up on the implementation of a telegram bot, and how a bot can read and respond to queries from the user to provide accurate replies. Following this, we will find out how we can integrate using a map into telegram bot. 
 
 To add more fun features, we also would like to explore using telegram features such as sending current location to the bot, and then intepreting the location details to return the nearest bike station, rather than having the user manually type the zipcode or location address. 
-
 
 ## 5. Project Schedule: 
 
