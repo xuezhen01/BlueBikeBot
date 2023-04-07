@@ -24,8 +24,6 @@ xz - I want to be able to build a telegram bot successfully, as i have never don
 matteo - I would want to look into learning how to use the Telegram API and utilizing the user's location in order to find the nearest BlueBikes. In addition, I want to familiarize myself more with flask and designing a web app.
 
 ## 4. Implementation Plan: 
-This part may be somewhat ambiguous initially. You might have identified a library or a framework that you believe would be helpful for your project at this early stage. If you're uncertain about executing your project plan, provide a rough plan describing how you'll investigate this information further.
-
 First, we have sourced for an API provided by bluebikes, this API is able to share with us the station names and IDs, number of available bikes, number of bikes to be returned and many more. 
 
 Next, we want to be read up on the implementation of a telegram bot, and how a bot can read and respond to queries from the user to provide accurate replies. Following this, we will find out how we can integrate using a map into telegram bot. 
@@ -34,8 +32,6 @@ To add more fun features, we also would like to explore using telegram features 
 
 
 ## 5. Project Schedule: 
-
-You have 6 weeks (roughly) to finish the project. Draft a general timeline for your project. Depending on your project, you might be able to provide a detailed schedule or only an overview. Preparation of a longer project is also accompanied by present uncertainty, and this schedule will likely require revisions as the project progresses.
 
 - Week 1: read up on telegram bot, how to access the bluebike api, how to structure the API calling (as more than 1 api will need to be called), define what functionalities the telegram bot should be able to carry out. 
 - Week 2: create flask file and other files (html, functions), build the basic requirements of a telegram bot. Create necessary functions to call and extract data given from bluebike's api.
