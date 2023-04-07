@@ -42,7 +42,7 @@ To add more fun features, we also would like to explore using telegram features 
 
 ## 6. Collaboration Plan
 
-How will you collaborate with your teammates on this project? Will you divide tasks and then incorporate them separately? Will you undertake a comprehensive pair program? Explain how you'll ensure effective team collaboration. This may also entail information on any software development methodologies you anticipate using (e.g. agile development). Be sure to clarify why you've picked this specific organizational structure.
+To collaborate for this project, we plan on having a mix of in-person meetings and asynchronous work. During our first in-person meeting, we will outline the various functions we need to complete and delegate tasks accordingly. We might consider experimenting with a scrum structure where several days a week, we update each other on what we are doing, what progress we made, and what next steps we have. Since it is just a 2 person project, it will be really easy to find meeting times and communicate effectively through text messaging.
 
 ## 7. Risks and Limitations
 
