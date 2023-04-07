@@ -46,9 +46,7 @@ To collaborate for this project, we plan on having a mix of in-person meetings a
 
 ## 7. Risks and Limitations
 
-What do you believe is the most significant threat to this project's success?
-
-Telegram bot not being able to return the expected asnwers, such as the nearest bike not being able to be found. API call failing, because we will need to access different api to link the data together, example API 1 only provides station ID, but to get the exact station name, we will need to call API 2 and match the station ID to obtain the station name. 
+One significant threat to the project's success is Telegram bot not being able to return the expected asnwers, such as the nearest bike not being able to be found. API call failing, because we will need to access different api to link the data together, example API 1 only provides station ID, but to get the exact station name, we will need to call API 2 and match the station ID to obtain the station name. 
 
 ## Additional Course Content
 
