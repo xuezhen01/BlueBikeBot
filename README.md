@@ -5,7 +5,7 @@
 
 ## 1. Overview
 
-This project focuses on building a Telegram Bot for users to find out real-time data of Blue Bikes. 
+This project focuses on building a Telegram Bot for users to find out real-time data of Blue Bikes.
 
 ## 2. The Big Idea: 
 
@@ -15,15 +15,13 @@ The Main idea of this project would be to enable users to find out bike availabi
 
 ## 3. Learning Objectives
 
-Since this is a team project, you may want to articulate both shared and individual learning goals.
-
 For this project, we both aim to be able to integrate more features with functionalities into the project, and to ensure good communication and teamwork is obtained. 
 
 Individual goals:
 
 xz - I want to be able to build a telegram bot successfully, as i have never done so before and feel that it would give me good exposure. I also want to be able to better organise code structure to ensure neatness and good coding habits. 
 
-matteo - 
+matteo - I would want to look into learning how to use the Telegram API and utilizing the user's location in order to find the nearest BlueBikes. In addition, I want to familiarize myself more with flask and designing a web app.
 
 ## 4. Implementation Plan: 
 This part may be somewhat ambiguous initially. You might have identified a library or a framework that you believe would be helpful for your project at this early stage. If you're uncertain about executing your project plan, provide a rough plan describing how you'll investigate this information further.
