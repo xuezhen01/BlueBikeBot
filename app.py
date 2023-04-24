@@ -68,6 +68,8 @@ def index():
             tel_send_image(chat_id)
         elif txt == "inlineurl":
             tel_send_inlineurl(chat_id)
+        elif txt == "/start":
+            tel_send_message(chat_id, "Hey there, how can I help you out here?")
         else:
             tel_send_message(chat_id,'from webhook')
        
