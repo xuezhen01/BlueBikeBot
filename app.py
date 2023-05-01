@@ -2,14 +2,14 @@ from flask import Flask
 from flask import request
 from flask import Response
 import requests
-import telegram
+# import telegram
 from blueBike import get_user_lat_long
-import telebot
+# import telebot
 
  
 TOKEN = "6205125004:AAFK5Gqn5AHJPGQRR5KW-7yPsGFJLrspPow"
 app = Flask(__name__)
-bot = telebot.TeleBot(TOKEN)
+# bot = telebot.TeleBot(TOKEN)
  
 # @app.route('/{}'.format(TOKEN), methods=['POST'])
 # def respond():
@@ -52,9 +52,9 @@ bot = telebot.TeleBot(TOKEN)
     
 
 
-@bot.message_handler(commands=['start', 'sup'])
-def send_welcome(message):
-    bot.reply_to(message, "Howdy, how are you doing?")
+# @bot.message_handler(commands=['start', 'sup'])
+# def send_welcome(message):
+#     bot.reply_to(message, "Howdy, how are you doing?")
 
 
 def parse_message(message):
