@@ -11,6 +11,14 @@ This project focuses on building a Telegram Bot for users to find out real-time 
 
 The Main idea of this project would be to enable users to find out bike availabilities via the telegram bot - User raises a question about bluebikes, e.g. whether there are bikes available for rent at a specific station.
 
+Instructions: 
+1. Run app.py (5000)
+2. ensure ngrok is installed, run ngrok on http 5000
+3. Copy the link given from running ngrok on a separate terminal
+4. Here is the link to run on your browser: https://api.telegram.org/bot<Your Bot Token>/setWebhook?url=<URL that you got from Ngrok>
+5. Run the link on the browser with API key and NGROK link included 
+6. Test the bot! 
+
 ## 3. Learning Objectives
 
 For this project, we both aim to be able to integrate more features with functionalities into the project, and to ensure good communication and teamwork is obtained. 
