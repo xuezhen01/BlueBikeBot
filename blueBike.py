@@ -3,6 +3,9 @@ import requests
 from config import MAPBOX_TOKEN
 import json
 import urllib.parse
+from math import radians, cos, sin, asin, sqrt
+import math
+import geopy.distance
 
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 STATION_DETAILS_URL = "https://gbfs.bluebikes.com/gbfs/en/station_status.json" 
@@ -47,10 +50,51 @@ def get_user_lat_long(place_name: str):
         return json_output['features'][0]['geometry']['coordinates']
     else:
         return("Address entered does not exist")
+    
+def calculate_distance(coords_1, coords_2):
+    """
+    this function makes use of the existing library : geopy
+    geopy calculates the distance between 2 coordinates and returns the distance in km
+    """
+    return geopy.distance.geodesic(coords_1, coords_2).km
 
-#maybe forgo this, we can just let the user mention the bike station and return the state 
-def get_nearby_bike_stations():
-    pass
+def get_nearby_bike_stations(place_name: str):
+    """
+    this function returns the nearest bike station based on the above function, calculate distance. 
+    For loops through the stations in the object and obtains the lat long of each station. With the lat long, 
+    we will use the calculate_distance function above to return the nearest station 
+    """
+    current_lat = get_user_lat_long(place_name)[1]
+    current_lon = get_user_lat_long(place_name)[0]
+
+
+    response = requests.get(STATION_INFO_URL).json()
+    stations_array = response['data']['stations']
+
+    current_coords = (current_lat, current_lon)
+    stations_coords = [(s['lat'], s['lon']) for s in stations_array]
+    distances = [calculate_distance(current_coords, station_coords) for station_coords in stations_coords]
+    stations_distances = list(zip(stations_array, distances))
+    stations_distances.sort(key=lambda s: s[1])
+    names_distances = [(s[0]['name'], s[1]) for s in stations_distances]
+    closest_ten = names_distances[:10]
+    longest_name_len = len(max(closest_ten, key=lambda s: len(s[0]))[0])
+    cool_output_prefix = f"NAME{' ' * longest_name_len}DISTANCE\n"
+    cool_output_body = "\n".join(f"{s[0]} {' ' * (longest_name_len - len(s[0]))} {s[1]}" for s in closest_ten)
+    cool_output = cool_output_prefix + cool_output_body
+    return cool_output
+
+
+def get_trip_price(minutes: int):
+    if minutes <= 30:
+        return "$2.95"
+    else:
+        price = 2.95
+        dif = minutes - 30
+        add = dif/30 + 1
+        extra = math.floor(add)
+        price = 2.95 + extra*4
+        return f"${price}"
 
 def get_json(url: str) -> dict:
 
@@ -67,6 +111,13 @@ def main():
     print(get_user_lat_long('babson college'))
     print(get_avail_bikes('193'))
     print(get_station_information('193'))
+    print(get_nearby_bike_stations('curry student center'))
+    print(get_trip_price(15))
+    print(get_trip_price(30))
+    print(get_trip_price(31))
+    print(get_trip_price(61))
+    print(get_trip_price(1015))
+
 
 
 if __name__ == '__main__':

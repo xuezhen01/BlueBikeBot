@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from flask import Response
 import requests
-from blueBike import get_user_lat_long
+from blueBike import get_nearby_bike_stations, get_user_lat_long, get_trip_price, get_station_information
 
 TOKEN = "6215179642:AAEcF18YXRNFN_U7YAlJyKtBSMcDjSJa2Wo"
  
@@ -19,7 +19,7 @@ def tel_parse_message(message):
         return chat_id,txt
     except:
         print("NO text found-->>")
- 
+
 def tel_send_message(chat_id, text):
     url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
     payload = {
@@ -69,9 +69,15 @@ def getInput(update):
 def index():
     bot_welcome = """
                Welcome to Bluebike bot! I am here to assist you to find out the number of available bikes at near Blue Bike stations
-               Let's get riding!
+               Let's get riding! 
+               
+               Here are the list of commands I can help you with:
+               1. /station_info
+               2. /nearby_station
+               3. /bike_pricing
+               
                """
-    rental_types = ['annual membership', 'monthly membership', 'adventure pass', 'single trip']
+    # rental_types = ['annual membership', 'monthly membership', 'adventure pass', 'single trip']
     rental_prices = {
                     'annual membership': """The Annual Membership is $13/month
                             (or $129 paid in full) and includes
@@ -107,12 +113,23 @@ def index():
                 tel_send_message(chat_id,"Hello, world!")
             elif txt == "/start":
                 tel_send_message(chat_id, bot_welcome)
-            elif txt == "nearby station":
+            elif txt == "/nearby_station":
                 tel_send_message(chat_id,"Please enter your current location")
+                response = getInput()
+                if response:
+                    lat_long = get_user_lat_long(response)
+                    tel_send_message(chat_id, get_nearby_bike_stations(lat_long))
                 
-            elif txt == "bike pricing":
+            elif txt == "/station_info":
+                tel_send_message(chat_id,"Please enter your station ID")
+                response = getInput()
+                if response:
+                    tel_send_message(chat_id, get_station_information(response))
+
+            elif txt == "/bike_pricing":
                 tel_send_inlinebutton(chat_id)
                 response = getInput()
+
                 if response == "annual":
                     tel_send_message(chat_id, rental_prices['annual membership'])
 
@@ -120,12 +137,22 @@ def index():
                     tel_send_message(chat_id, rental_prices['monthly membership'])
 
                 elif response == "adventure":
-                    tel_send_message(chat_id, rental_prices['single trip'])
+                    tel_send_message(chat_id, rental_prices['Adventure pass'])
 
                 else:
                     tel_send_message(chat_id, rental_prices['single trip'])
+                    tel_send_message(chat_id, "Would you like to calculate the cost of a single trip?")
+                    response = getInput()
+                    if response:
+                        if response.lower() == "yes":
+                            tel_send_message(chat_id, "How many minutes will you be renting the bike for?")
+                            response = getInput()
+                            if response:
+                                price = get_trip_price(int(response))
+                                tel_send_message(chat_id, f"Your trip will cost approximately {price}")
+
             else:
-                tel_send_message(chat_id, 'Sorry, I dont get what you mean! Try sending me other commands instead!')
+                tel_send_message(chat_id, 'Sorry, I dont get what you mean! Try sending me other commands instead.')
         except:
             print("from index-->")
  
