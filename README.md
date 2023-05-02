@@ -15,9 +15,22 @@ Instructions:
 1. Run app.py (5000)
 2. ensure ngrok is installed, run ngrok on http 5000
 3. Copy the link given from running ngrok on a separate terminal
-4. Here is the link to run on your browser: https://api.telegram.org/bot<Your Bot Token>/setWebhook?url=<URL that you got from Ngrok>
+4. Here is the link to run on your browser (BUT be sure to replace the link at the end with the new ngrok link you have after running the file):
+https://api.telegram.org/bot6215179642:AAEcF18YXRNFN_U7YAlJyKtBSMcDjSJa2Wo/setWebhook?url=https://1e41-155-48-255-229.ngrok-free.app
+
 5. Run the link on the browser with API key and NGROK link included 
 6. Test the bot! 
+
+Expected results of Telegram bot: 
+
+**Getting the nearest station**
+<img src="images/demo_nearby_station.png">
+
+**Getting information of a station user is at**
+<img src="images/demo_station_info.png">
+
+**Calculating the price of a single trip**
+<img src="images/demo_price.png">
 
 ## 3. Learning Objectives
 
