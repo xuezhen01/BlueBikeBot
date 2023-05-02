@@ -110,7 +110,7 @@ def main():
     print(get_station_status('193'))
     print(get_user_lat_long('babson college'))
     print(get_avail_bikes('193'))
-    print(get_station_information('193'))
+    print(get_station_information('3'))
     print(get_nearby_bike_stations('curry student center'))
     print(get_trip_price(15))
     print(get_trip_price(30))

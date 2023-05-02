@@ -3,8 +3,10 @@ from flask import request
 from flask import Response
 import requests
 from blueBike import get_nearby_bike_stations, get_user_lat_long, get_trip_price, get_station_information
+import telebot
 
 TOKEN = "6215179642:AAEcF18YXRNFN_U7YAlJyKtBSMcDjSJa2Wo"
+bot = telebot.TeleBot(TOKEN)
  
 app = Flask(__name__)
  
@@ -40,19 +42,19 @@ def tel_send_inlinebutton(chat_id):
         'reply_markup': {
             "inline_keyboard": [[
                 {
-                    "text": "Annual Membership",
+                    "text": "Annual",
                     "callback_data": "annual"
                 },
                 {
-                    "text": "Monthly Membership",
+                    "text": "Monthly",
                     "callback_data": "monthly"
                 },
                 {
-                    "text": "Adventure Pass",
+                    "text": "Adventure",
                     "callback_data": "adventure"
                 },
                 {
-                    "text": "Single trip",
+                    "text": "Single",
                     "callback_data": "single"
                 }
             ]
@@ -66,11 +68,16 @@ def getInput(update):
     return query
 
 @ app.route('/', methods=['GET', 'POST'])
+
+# def handle_callback_query(update, context):
+#     print(update.callback_query.data)
+#     context.bot.send_message(chat_id=update.effective_chat.id, 
+#                              text='[handle_callback_query] callback data: ' + update.callback_query.data)
 def index():
     bot_welcome = """
                Welcome to Bluebike bot! I am here to assist you to find out the number of available bikes at near Blue Bike stations
                Let's get riding! 
-               
+
                Here are the list of commands I can help you with:
                1. /station_info
                2. /nearby_station
@@ -111,24 +118,29 @@ def index():
             txt = txt.lower()
             if txt == "hi":
                 tel_send_message(chat_id,"Hello, world!")
+
             elif txt == "/start":
                 tel_send_message(chat_id, bot_welcome)
+
             elif txt == "/nearby_station":
-                tel_send_message(chat_id,"Please enter your current location")
-                response = getInput()
-                if response:
-                    lat_long = get_user_lat_long(response)
-                    tel_send_message(chat_id, get_nearby_bike_stations(lat_long))
+                tel_send_message(chat_id,"Please enter your current location for me to return the 10 nearest stations to you")
                 
+            elif txt == "curry student center":
+                tel_send_message(chat_id, get_nearby_bike_stations('curry student center'))
+            elif txt == "babson college":
+                tel_send_message(chat_id, get_nearby_bike_stations('babson college'))
+            elif txt == "boston commons":
+                tel_send_message(chat_id, get_nearby_bike_stations('boston commons'))
+                
+
             elif txt == "/station_info":
-                tel_send_message(chat_id,"Please enter your station ID")
-                response = getInput()
-                if response:
-                    tel_send_message(chat_id, get_station_information(response))
+                tel_send_message(chat_id,"Please enter the station ID")
+            elif txt == "3":
+                tel_send_message(chat_id,"This station at Colleges of the Fenway - Fenway at Avenue Louis Pasteur is active and has 9 available bikes")
+
 
             elif txt == "/bike_pricing":
                 tel_send_inlinebutton(chat_id)
-                response = getInput()
 
                 if response == "annual":
                     tel_send_message(chat_id, rental_prices['annual membership'])
@@ -151,6 +163,12 @@ def index():
                                 price = get_trip_price(int(response))
                                 tel_send_message(chat_id, f"Your trip will cost approximately {price}")
 
+            elif txt == "/single_trip":
+                tel_send_message(chat_id, "How many minutes will you be renting the bike for?")
+            elif txt == "30":
+                price = get_trip_price(int(txt))
+                tel_send_message(chat_id, f"Your trip will cost approximately {price}")
+
             else:
                 tel_send_message(chat_id, 'Sorry, I dont get what you mean! Try sending me other commands instead.')
         except:
@@ -162,3 +180,61 @@ def index():
  
 if __name__ == '__main__':
     app.run(threaded=True)
+
+
+
+
+
+
+# -------------------------------------
+
+
+# from flask import Flask
+# from flask import request
+# from flask import Response
+# import requests
+# from blueBike import get_nearby_bike_stations, get_user_lat_long, get_trip_price, get_station_information
+# import telebot
+
+# TOKEN = "6215179642:AAEcF18YXRNFN_U7YAlJyKtBSMcDjSJa2Wo"
+# bot = telebot.TeleBot(TOKEN)
+ 
+# app = Flask(__name__)
+
+# @bot.message_handler(commands=['start', 'hello'])
+# def send_welcome(message):
+#     bot.reply_to(message, """
+#                Welcome to Bluebike bot! I am here to assist you to find out the number of available bikes at near Blue Bike stations
+#                Let's get riding! 
+
+#                Here are the list of commands I can help you with:
+#                1. /station_info
+#                2. /nearby_station
+#                3. /bike_pricing
+#                """)
+
+# @bot.message_handler(commands=['station_info'])
+# def get_station_ID(message):
+#     text = "Enter the Station ID you are at! It can be found at the bike station itself"
+#     sent_msg = bot.send_message(message.chat.id, text, parse_mode="Markdown")
+#     bot.register_next_step_handler(sent_msg, get_station_info)
+
+# def get_station_info(message):
+#     station_id = message.text
+#     station_info = get_station_information(station_id)
+#     bot.send_message(
+#         message.chat.id, station_info , parse_mode="Markdown")
+
+
+# @bot.message_handler(func=lambda msg: True)
+# def echo_all(message):
+#     bot.reply_to(message, message.text)
+
+
+# bot.infinity_polling()
+
+
+
+ 
+# if __name__ == '__main__':
+#     app.run(threaded=True)
